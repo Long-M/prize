@@ -11,6 +11,7 @@
     <groupId>com.ml.prize</groupId>
     <artifactId>frontend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>frontend</name>
     <description>Demo project for Spring Boot</description>
     <properties>
@@ -30,6 +31,14 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
             </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-dependencies</artifactId>-->
+<!--                <version>Hoxton.SR10</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>runtime</scope>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
