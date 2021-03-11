@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ml.prize.mapper.GameMapper">
+  <resultMap id="BaseResultMap" type="com.ml.prize.entity.Game">
+    <id column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="titile" jdbcType="VARCHAR" property="titile" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="game_info" jdbcType="VARCHAR" property="gameInfo" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    game_id, titile, picture, game_info, start_time, end_time, type, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game
+    where game_id = #{gameId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game
+    where game_id = #{gameId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ml.prize.entity.Game">
+    insert into game (game_id, titile, picture, 
+      game_info, start_time, end_time, 
+      type, status)
+    values (#{gameId,jdbcType=INTEGER}, #{titile,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{gameInfo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ml.prize.entity.Game">
+    insert into game
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="titile != null">
+        titile,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="gameInfo != null">
+        game_info,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="titile != null">
+        #{titile,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="gameInfo != null">
+        #{gameInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.entity.Game">
+    update game
+    <set>
+      <if test="titile != null">
+        titile = #{titile,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="gameInfo != null">
+        game_info = #{gameInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where game_id = #{gameId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ml.prize.entity.Game">
+    update game
+    set titile = #{titile,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      game_info = #{gameInfo,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      type = #{type,jdbcType=TINYINT},
+      status = #{status,jdbcType=TINYINT}
+    where game_id = #{gameId,jdbcType=INTEGER}
+  </update>
+</mapper>

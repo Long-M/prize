@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ml.prize.mapper.GameProductMapper">
+  <resultMap id="BaseResultMap" type="com.ml.prize.entity.GameProduct">
+    <id column="game_product_id" jdbcType="INTEGER" property="gameProductId" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="amount" jdbcType="SMALLINT" property="amount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    game_product_id, game_id, product_id, amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_product
+    where game_product_id = #{gameProductId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game_product
+    where game_product_id = #{gameProductId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ml.prize.entity.GameProduct">
+    insert into game_product (game_product_id, game_id, product_id, 
+      amount)
+    values (#{gameProductId,jdbcType=INTEGER}, #{gameId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{amount,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ml.prize.entity.GameProduct">
+    insert into game_product
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameProductId != null">
+        game_product_id,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameProductId != null">
+        #{gameProductId,jdbcType=INTEGER},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.entity.GameProduct">
+    update game_product
+    <set>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where game_product_id = #{gameProductId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ml.prize.entity.GameProduct">
+    update game_product
+    set game_id = #{gameId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=SMALLINT}
+    where game_product_id = #{gameProductId,jdbcType=INTEGER}
+  </update>
+</mapper>

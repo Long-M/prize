@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ml.prize.mapper.UserHitMapper">
+  <resultMap id="BaseResultMap" type="com.ml.prize.entity.UserHit">
+    <id column="user_hit_id" jdbcType="INTEGER" property="userHitId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="hit_time" jdbcType="TIMESTAMP" property="hitTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_hit_id, user_id, game_id, product_id, hit_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_hit
+    where user_hit_id = #{userHitId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_hit
+    where user_hit_id = #{userHitId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ml.prize.entity.UserHit">
+    insert into user_hit (user_hit_id, user_id, game_id, 
+      product_id, hit_time)
+    values (#{userHitId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{gameId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{hitTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ml.prize.entity.UserHit">
+    insert into user_hit
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userHitId != null">
+        user_hit_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="hitTime != null">
+        hit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userHitId != null">
+        #{userHitId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="hitTime != null">
+        #{hitTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.entity.UserHit">
+    update user_hit
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="hitTime != null">
+        hit_time = #{hitTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_hit_id = #{userHitId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ml.prize.entity.UserHit">
+    update user_hit
+    set user_id = #{userId,jdbcType=INTEGER},
+      game_id = #{gameId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      hit_time = #{hitTime,jdbcType=TIMESTAMP}
+    where user_hit_id = #{userHitId,jdbcType=INTEGER}
+  </update>
+</mapper>
