@@ -5,7 +5,7 @@ import java.util.Date;
 public class Game {
     private Integer gameId;
 
-    private String titile;
+    private String title;
 
     private String picture;
 
@@ -27,12 +27,12 @@ public class Game {
         this.gameId = gameId;
     }
 
-    public String getTitile() {
-        return titile;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitile(String titile) {
-        this.titile = titile == null ? null : titile.trim();
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
     public String getPicture() {

@@ -1,13 +1,15 @@
 package com.ml.prize;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@MapperScan("com.ml.prize.mapper")
 @SpringBootApplication
-public class PrizeApplication {
+public class BackendApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(PrizeApplication.class, args);
+        SpringApplication.run(BackendApplication.class, args);
     }
 
 }

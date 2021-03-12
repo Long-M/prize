@@ -3,7 +3,7 @@
 <mapper namespace="com.ml.prize.mapper.GameMapper">
   <resultMap id="BaseResultMap" type="com.ml.prize.entity.Game">
     <id column="game_id" jdbcType="INTEGER" property="gameId" />
-    <result column="titile" jdbcType="VARCHAR" property="titile" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="game_info" jdbcType="VARCHAR" property="gameInfo" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
@@ -12,7 +12,7 @@
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
-    game_id, titile, picture, game_info, start_time, end_time, type, status
+    game_id, title, picture, game_info, start_time, end_time, type, status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,10 +25,10 @@
     where game_id = #{gameId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ml.prize.entity.Game">
-    insert into game (game_id, titile, picture, 
+    insert into game (game_id, title, picture,
       game_info, start_time, end_time, 
       type, status)
-    values (#{gameId,jdbcType=INTEGER}, #{titile,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+    values (#{gameId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR},
       #{gameInfo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
       #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT})
   </insert>
@@ -38,8 +38,8 @@
       <if test="gameId != null">
         game_id,
       </if>
-      <if test="titile != null">
-        titile,
+      <if test="title != null">
+        title,
       </if>
       <if test="picture != null">
         picture,
@@ -64,8 +64,8 @@
       <if test="gameId != null">
         #{gameId,jdbcType=INTEGER},
       </if>
-      <if test="titile != null">
-        #{titile,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
       <if test="picture != null">
         #{picture,jdbcType=VARCHAR},
@@ -90,8 +90,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.entity.Game">
     update game
     <set>
-      <if test="titile != null">
-        titile = #{titile,jdbcType=VARCHAR},
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
       </if>
       <if test="picture != null">
         picture = #{picture,jdbcType=VARCHAR},
@@ -116,7 +116,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ml.prize.entity.Game">
     update game
-    set titile = #{titile,jdbcType=VARCHAR},
+    set title = #{title,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
       game_info = #{gameInfo,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},
