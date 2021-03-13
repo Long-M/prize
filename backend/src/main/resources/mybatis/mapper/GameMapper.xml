@@ -3,7 +3,7 @@
 <mapper namespace="com.ml.prize.mapper.GameMapper">
   <resultMap id="BaseResultMap" type="com.ml.prize.entity.Game">
     <id column="game_id" jdbcType="INTEGER" property="gameId" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="titile" jdbcType="VARCHAR" property="titile" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="game_info" jdbcType="VARCHAR" property="gameInfo" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
@@ -11,9 +11,81 @@
     <result column="type" jdbcType="TINYINT" property="type" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
-  <sql id="Base_Column_List">
-    game_id, title, picture, game_info, start_time, end_time, type, status
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
   </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    game_id, titile, picture, game_info, start_time, end_time, type, status
+  </sql>
+  <select id="selectByExample" parameterType="com.ml.prize.entity.GameExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -24,11 +96,17 @@
     delete from game
     where game_id = #{gameId,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteByExample" parameterType="com.ml.prize.entity.GameExample">
+    delete from game
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
   <insert id="insert" parameterType="com.ml.prize.entity.Game">
-    insert into game (game_id, title, picture,
+    insert into game (game_id, titile, picture, 
       game_info, start_time, end_time, 
       type, status)
-    values (#{gameId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR},
+    values (#{gameId,jdbcType=INTEGER}, #{titile,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
       #{gameInfo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
       #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT})
   </insert>
@@ -38,8 +116,8 @@
       <if test="gameId != null">
         game_id,
       </if>
-      <if test="title != null">
-        title,
+      <if test="titile != null">
+        titile,
       </if>
       <if test="picture != null">
         picture,
@@ -64,8 +142,8 @@
       <if test="gameId != null">
         #{gameId,jdbcType=INTEGER},
       </if>
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
+      <if test="titile != null">
+        #{titile,jdbcType=VARCHAR},
       </if>
       <if test="picture != null">
         #{picture,jdbcType=VARCHAR},
@@ -87,11 +165,63 @@
       </if>
     </trim>
   </insert>
+  <select id="countByExample" parameterType="com.ml.prize.entity.GameExample" resultType="java.lang.Long">
+    select count(*) from game
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game
+    <set>
+      <if test="record.gameId != null">
+        game_id = #{record.gameId,jdbcType=INTEGER},
+      </if>
+      <if test="record.titile != null">
+        titile = #{record.titile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picture != null">
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameInfo != null">
+        game_info = #{record.gameInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null">
+        start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null">
+        end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=TINYINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game
+    set game_id = #{record.gameId,jdbcType=INTEGER},
+      titile = #{record.titile,jdbcType=VARCHAR},
+      picture = #{record.picture,jdbcType=VARCHAR},
+      game_info = #{record.gameInfo,jdbcType=VARCHAR},
+      start_time = #{record.startTime,jdbcType=TIMESTAMP},
+      end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.entity.Game">
     update game
     <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
+      <if test="titile != null">
+        titile = #{titile,jdbcType=VARCHAR},
       </if>
       <if test="picture != null">
         picture = #{picture,jdbcType=VARCHAR},
@@ -116,7 +246,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ml.prize.entity.Game">
     update game
-    set title = #{title,jdbcType=VARCHAR},
+    set titile = #{titile,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},
       game_info = #{gameInfo,jdbcType=VARCHAR},
       start_time = #{startTime,jdbcType=TIMESTAMP},

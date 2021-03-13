@@ -1,14 +1,14 @@
-package com.ml.prize.frontend.nacos;
+package com.ml.prize.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-public class NacosApplication {
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+public class ApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NacosApplication.class, args);
+        SpringApplication.run(ApiApplication.class, args);
     }
 
 }
