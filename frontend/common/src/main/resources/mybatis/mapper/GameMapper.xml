@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ml.prize.mapper.GameMapper">
-  <resultMap id="BaseResultMap" type="com.ml.prize.entity.Game">
+  <resultMap id="BaseResultMap" type="com.ml.prize.common.entity.Game">
     <id column="game_id" jdbcType="INTEGER" property="gameId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List">
     game_id, title, picture, game_info, start_time, end_time, type, status
   </sql>
-  <select id="selectByExample" parameterType="com.ml.prize.entity.GameExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.ml.prize.common.entity.GameExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -96,13 +96,13 @@
     delete from game
     where game_id = #{gameId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ml.prize.entity.GameExample">
+  <delete id="deleteByExample" parameterType="com.ml.prize.common.entity.GameExample">
     delete from game
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ml.prize.entity.Game">
+  <insert id="insert" parameterType="com.ml.prize.common.entity.Game">
     insert into game (game_id, title, picture,
       game_info, start_time, end_time, 
       type, status)
@@ -110,7 +110,7 @@
       #{gameInfo,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
       #{type,jdbcType=TINYINT}, #{status,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.ml.prize.entity.Game">
+  <insert id="insertSelective" parameterType="com.ml.prize.common.entity.Game">
     insert into game
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="gameId != null">
@@ -165,7 +165,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ml.prize.entity.GameExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.ml.prize.common.entity.GameExample" resultType="java.lang.Long">
     select count(*) from game
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -217,7 +217,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.entity.Game">
+  <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.common.entity.Game">
     update game
     <set>
       <if test="title != null">
@@ -244,7 +244,7 @@
     </set>
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ml.prize.entity.Game">
+  <update id="updateByPrimaryKey" parameterType="com.ml.prize.common.entity.Game">
     update game
     set title = #{title,jdbcType=VARCHAR},
       picture = #{picture,jdbcType=VARCHAR},

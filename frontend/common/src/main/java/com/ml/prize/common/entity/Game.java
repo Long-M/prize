@@ -1,4 +1,4 @@
-package com.ml.prize.entity;
+package com.ml.prize.common.entity;
 
 import java.util.Date;
 

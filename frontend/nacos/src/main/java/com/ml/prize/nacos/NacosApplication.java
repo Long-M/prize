@@ -1,0 +1,14 @@
+package com.ml.prize.nacos;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+public class NacosApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(NacosApplication.class, args);
+    }
+
+}

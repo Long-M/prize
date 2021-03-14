@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ml.prize.mapper.GameRuleMapper">
+  <resultMap id="BaseResultMap" type="com.ml.prize.common.entity.GameRule">
+    <id column="game_rule_id" jdbcType="INTEGER" property="gameRuleId" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="user_level" jdbcType="INTEGER" property="userLevel" />
+    <result column="enter_times" jdbcType="SMALLINT" property="enterTimes" />
+    <result column="goal_times" jdbcType="SMALLINT" property="goalTimes" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    game_rule_id, game_id, user_level, enter_times, goal_times
+  </sql>
+  <select id="selectByExample" parameterType="com.ml.prize.common.entity.GameRuleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from game_rule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from game_rule
+    where game_rule_id = #{gameRuleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from game_rule
+    where game_rule_id = #{gameRuleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ml.prize.common.entity.GameRuleExample">
+    delete from game_rule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ml.prize.common.entity.GameRule">
+    insert into game_rule (game_rule_id, game_id, user_level, 
+      enter_times, goal_times)
+    values (#{gameRuleId,jdbcType=INTEGER}, #{gameId,jdbcType=INTEGER}, #{userLevel,jdbcType=INTEGER}, 
+      #{enterTimes,jdbcType=SMALLINT}, #{goalTimes,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ml.prize.common.entity.GameRule">
+    insert into game_rule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gameRuleId != null">
+        game_rule_id,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="userLevel != null">
+        user_level,
+      </if>
+      <if test="enterTimes != null">
+        enter_times,
+      </if>
+      <if test="goalTimes != null">
+        goal_times,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gameRuleId != null">
+        #{gameRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null">
+        #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="enterTimes != null">
+        #{enterTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="goalTimes != null">
+        #{goalTimes,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ml.prize.common.entity.GameRuleExample" resultType="java.lang.Long">
+    select count(*) from game_rule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update game_rule
+    <set>
+      <if test="record.gameRuleId != null">
+        game_rule_id = #{record.gameRuleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gameId != null">
+        game_id = #{record.gameId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userLevel != null">
+        user_level = #{record.userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.enterTimes != null">
+        enter_times = #{record.enterTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="record.goalTimes != null">
+        goal_times = #{record.goalTimes,jdbcType=SMALLINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update game_rule
+    set game_rule_id = #{record.gameRuleId,jdbcType=INTEGER},
+      game_id = #{record.gameId,jdbcType=INTEGER},
+      user_level = #{record.userLevel,jdbcType=INTEGER},
+      enter_times = #{record.enterTimes,jdbcType=SMALLINT},
+      goal_times = #{record.goalTimes,jdbcType=SMALLINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ml.prize.common.entity.GameRule">
+    update game_rule
+    <set>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="userLevel != null">
+        user_level = #{userLevel,jdbcType=INTEGER},
+      </if>
+      <if test="enterTimes != null">
+        enter_times = #{enterTimes,jdbcType=SMALLINT},
+      </if>
+      <if test="goalTimes != null">
+        goal_times = #{goalTimes,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where game_rule_id = #{gameRuleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ml.prize.common.entity.GameRule">
+    update game_rule
+    set game_id = #{gameId,jdbcType=INTEGER},
+      user_level = #{userLevel,jdbcType=INTEGER},
+      enter_times = #{enterTimes,jdbcType=SMALLINT},
+      goal_times = #{goalTimes,jdbcType=SMALLINT}
+    where game_rule_id = #{gameRuleId,jdbcType=INTEGER}
+  </update>
+</mapper>
