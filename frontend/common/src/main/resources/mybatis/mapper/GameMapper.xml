@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ml.prize.mapper.GameMapper">
+<mapper namespace="com.ml.prize.common.mapper.GameMapper">
   <resultMap id="BaseResultMap" type="com.ml.prize.common.entity.Game">
     <id column="game_id" jdbcType="INTEGER" property="gameId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
