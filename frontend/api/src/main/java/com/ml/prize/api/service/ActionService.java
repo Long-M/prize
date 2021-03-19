@@ -1,7 +1,6 @@
 package com.ml.prize.api.service;
 
-import com.ml.prize.common.vo.ResultVO;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.ml.prize.commons.vo.ResultVO;
 
 import javax.servlet.http.HttpServletRequest;
 

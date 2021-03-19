@@ -1,10 +1,10 @@
 package com.ml.prize.job.config;
 
-import com.ml.prize.common.mapper.GameLoadMapper;
-import com.ml.prize.common.mapper.GameMapper;
-import com.ml.prize.common.mapper.GameProductMapper;
-import com.ml.prize.common.mapper.GameRuleMapper;
-import com.ml.prize.common.util.RedisUtils;
+import com.ml.prize.commons.mapper.GameLoadMapper;
+import com.ml.prize.commons.mapper.GameMapper;
+import com.ml.prize.commons.mapper.GameProductMapper;
+import com.ml.prize.commons.mapper.GameRuleMapper;
+import com.ml.prize.commons.util.RedisUtils;
 import com.ml.prize.job.task.GameJob;
 import org.quartz.JobBuilder;
 import org.quartz.JobDataMap;

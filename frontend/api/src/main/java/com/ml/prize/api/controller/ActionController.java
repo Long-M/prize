@@ -1,7 +1,7 @@
 package com.ml.prize.api.controller;
 
 import com.ml.prize.api.service.ActionService;
-import com.ml.prize.common.vo.ResultVO;
+import com.ml.prize.commons.vo.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletRequest;
  * @author Mr.ml
  * @date 2021/3/16
  */
-@Api("抽奖模块")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/action")
+@Api("抽奖模块")
 public class ActionController {
 
     @Resource
@@ -38,7 +38,7 @@ public class ActionController {
     @GetMapping("/info/{gameId}")
     @ApiOperation(value = "缓存信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name="gameId", value = "活动id", example = "1", required = true)
+            @ApiImplicitParam(name = "gameId", value = "活动id", example = "1", required = true)
     })
     public ResultVO info(@PathVariable Integer gameId){
         return actionService.info(gameId);

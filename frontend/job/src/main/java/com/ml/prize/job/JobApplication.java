@@ -4,8 +4,8 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@MapperScan("com.ml.prize.common.mapper")
-@SpringBootApplication(scanBasePackages = {"com.ml.prize.common.config", "com.ml.prize.common.util", "com.ml.prize.job.**"})
+@MapperScan("com.ml.prize.commons.mapper")
+@SpringBootApplication(scanBasePackages = {"com.ml.prize.commons.config", "com.ml.prize.commons.util", "com.ml.prize.job.**"})
 public class JobApplication {
 
     public static void main(String[] args) {

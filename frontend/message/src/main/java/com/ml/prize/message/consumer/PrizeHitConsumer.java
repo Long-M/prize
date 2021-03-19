@@ -1,8 +1,8 @@
 package com.ml.prize.message.consumer;
 
 import com.alibaba.fastjson.JSON;
-import com.ml.prize.common.entity.UserHit;
-import com.ml.prize.common.mapper.UserHitMapper;
+import com.ml.prize.commons.entity.UserHit;
+import com.ml.prize.commons.mapper.UserHitMapper;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 

@@ -1,9 +1,9 @@
 package com.ml.prize.job.task;
 
-import com.ml.prize.common.entity.*;
-import com.ml.prize.common.enums.RedisKeyPrefixEnum;
-import com.ml.prize.common.mapper.*;
-import com.ml.prize.common.util.RedisUtils;
+import com.ml.prize.commons.entity.*;
+import com.ml.prize.commons.enums.RedisKeyPrefixEnum;
+import com.ml.prize.commons.mapper.*;
+import com.ml.prize.commons.util.RedisUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
