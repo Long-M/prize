@@ -1,10 +1,10 @@
-package com.ml.prize.nacos;
+package com.ml.prize.gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NacosApplicationTests {
+class GatewayApplicationTests {
 
     @Test
     void contextLoads() {

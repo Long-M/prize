@@ -1,4 +1,4 @@
-package com.ml.prize.api.interceptor;
+package com.ml.prize.gateway.interceptor;
 
 import com.alibaba.fastjson.JSON;
 import com.ml.prize.commons.util.RedisUtils;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * @author Mr.ml
- * @date 2021/3/18
+ * @date 2021/3/22
  */
 public class RedisSessionInterceptor implements HandlerInterceptor {
 
